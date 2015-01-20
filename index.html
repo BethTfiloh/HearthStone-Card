@@ -1,0 +1,123 @@
+<html>
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <style type="text/css">
+      
+      body {
+        margin: 1em auto;
+        -webkit-perspective: 1200px;
+        -moz-perspective: 1200px;
+        -ms-perspective: 1200px;
+        perspective: 1200px;
+        background: #45484d; /* Old browsers */
+        background: -moz-radial-gradient(center, ellipse cover,  #45484d 0%, #000000 100%); /* FF3.6+ */
+        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+        background: -webkit-radial-gradient(center, ellipse cover,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-radial-gradient(center, ellipse cover,  #45484d 0%,#000000 100%); /* Opera 12+ */
+        background: -ms-radial-gradient(center, ellipse cover,  #45484d 0%,#000000 100%); /* IE10+ */
+        background: radial-gradient(ellipse at center,  #45484d 0%,#000000 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+      }
+
+      #logo {
+        position: absolute;
+        bottom: -10px;
+        left:0;
+        right:0;
+        margin: auto;
+      }
+
+      .card {
+        margin:auto;
+        position: absolute;
+        top:-105px;
+        left:0;
+        right:0;
+        bottom:0;
+        /*opacity: .4;*/
+
+        -webkit-animation-name: rotate-card;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-duration: 6s;
+
+        animation-name: rotate-card;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-duration: 6s;
+
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+      }
+
+
+/*      #front-card:hover {
+        -webkit-animation-play-state: paused;
+        animation-play-state: paused;
+      }
+*/
+      /* WebKit and Opera browsers */
+      @-webkit-keyframes rotate-card {
+        from { -webkit-transform: rotateY(0deg);    }
+        to   { -webkit-transform: rotateY(-360deg); }
+      }
+
+      /* all other browsers */
+      @keyframes rotate-card {
+        from {
+          -moz-transform: rotateY(0deg);
+          -ms-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+        }
+        to {
+          -moz-transform: rotateY(-360deg);
+          -ms-transform: rotateY(-360deg);
+          transform: rotateY(-360deg);
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    
+    <img class="card" src="card.jpg" id="front-card" alt="" width="300" height="395" style="z-index:2;">
+    <img class="card" src="back.png" id="back-card" alt="" width="300" height="395" style="z-index:1;">
+
+    <img src="logo.png" alt="" height="150" id="logo">
+
+    
+    <script>
+
+    // setTimeout(function() {
+    //   $('.card').fadeIn();
+    // }, 1000);
+
+    var forward = true;
+    setTimeout(function(){
+      switchFace();
+      
+      setInterval(function(){
+        switchFace();
+      },3000);
+
+    }, 1500); 
+
+    function switchFace() {
+      console.log('swich');
+      if (forward) {
+        $("#front-card").css('z-index', '0');
+        forward = false;
+      }
+      else {
+        $("#front-card").css('z-index', '2');
+        forward = true;
+      }
+    }
+    </script>
+
+    
+  </body>
+</html>
