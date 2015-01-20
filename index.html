@@ -1,8 +1,11 @@
 <html>
   <head>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <style type="text/css">
-      
+      @font-face {
+        font-family: hearthstone;
+        src: url(bliz-quadrata.woff);
+      }
+
       body {
         margin: 1em auto;
         -webkit-perspective: 1200px;
@@ -28,6 +31,20 @@
         margin: auto;
       }
 
+      #front-card {
+         z-index:2;
+
+         -webkit-animation: rotate-card 6s linear infinite, flip 6s linear infinite;
+        animation: rotate-card 6s linear infinite, flip 6s linear infinite;
+      }
+
+      #back-card {
+        z-index: 1;
+
+        -webkit-animation: rotate-card 6s linear infinite;
+        animation: rotate-card 6s linear infinite;
+      }
+
       .card {
         margin:auto;
         position: absolute;
@@ -35,17 +52,6 @@
         left:0;
         right:0;
         bottom:0;
-        /*opacity: .4;*/
-
-        -webkit-animation-name: rotate-card;
-        -webkit-animation-timing-function: linear;
-        -webkit-animation-iteration-count: infinite;
-        -webkit-animation-duration: 6s;
-
-        animation-name: rotate-card;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-duration: 6s;
 
         -webkit-transform-style: preserve-3d;
         -moz-transform-style: preserve-3d;
@@ -54,11 +60,6 @@
       }
 
 
-/*      #front-card:hover {
-        -webkit-animation-play-state: paused;
-        animation-play-state: paused;
-      }
-*/
       /* WebKit and Opera browsers */
       @-webkit-keyframes rotate-card {
         from { -webkit-transform: rotateY(0deg);    }
@@ -79,45 +80,36 @@
         }
       }
 
+      @-webkit-keyframes flip {
+        0% { z-index: 2; }
+        24% { z-index: 2; }
+        25% { z-index: 0; }
+        74% { z-index: 0; }
+        75% { z-index: 2; }
+      }
+
+      /* all other browsers */  
+      @keyframes flip {
+        0% { z-index: 2; }
+        24% { z-index: 2; }
+        25% { z-index: 0; }
+        74% { z-index: 0; }
+        75% { z-index: 2; }
+      }
+
+      .card:hover {
+        -webkit-animation-play-state: paused;
+        animation-play-state: paused;
+      }
+
+
     </style>
   </head>
   <body>
     
-    <img class="card" src="card.jpg" id="front-card" alt="" width="300" height="395" style="z-index:2;">
-    <img class="card" src="back.png" id="back-card" alt="" width="300" height="395" style="z-index:1;">
+    <img class="card" src="card.jpg" id="front-card" alt="" width="300" height="395">
+    <img class="card" src="back.png" id="back-card" alt="" width="300" height="395">
 
-    <img src="logo.png" alt="" height="150" id="logo">
-
-    
-    <script>
-
-    // setTimeout(function() {
-    //   $('.card').fadeIn();
-    // }, 1000);
-
-    var forward = true;
-    setTimeout(function(){
-      switchFace();
-      
-      setInterval(function(){
-        switchFace();
-      },3000);
-
-    }, 1500); 
-
-    function switchFace() {
-      console.log('swich');
-      if (forward) {
-        $("#front-card").css('z-index', '0');
-        forward = false;
-      }
-      else {
-        $("#front-card").css('z-index', '2');
-        forward = true;
-      }
-    }
-    </script>
-
-    
+    <img src="logo.png" alt="" height="150" id="logo">  
   </body>
 </html>
